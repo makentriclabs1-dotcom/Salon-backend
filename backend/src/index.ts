@@ -17,8 +17,11 @@ import { runReminderSweep } from "./services/reminder.service";
 
 const app = express();
 
-app.use(helmet());
-app.use(cors({ origin: process.env.CORS_ORIGIN || "*" }));
+app.use(cors({
+  origin:"*",
+  methods:["GET","POST",'PUT","DELETE","OPTIONS"],
+  allowedHeaders:["Content-Type","Authorization"]
+           }));       
 app.use(express.json());
 
 app.use("/api/auth/login", rateLimit({ windowMs: 15 * 60 * 1000, max: 10, standardHeaders: true }));
