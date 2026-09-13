@@ -54,3 +54,4 @@ app.listen(port, () => {
 const REMINDER_SWEEP_INTERVAL_MS = 5 * 60 * 1000;
 setInterval(runReminderSweep, REMINDER_SWEEP_INTERVAL_MS);
 runReminderSweep();
+export default app;
