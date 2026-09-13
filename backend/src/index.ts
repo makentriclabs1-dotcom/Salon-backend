@@ -23,13 +23,13 @@ app.use(cors({
   allowedHeaders:["Content-Type","Authorization"]
            }));       
 app.use(express.json());
-
+app.get("/api/health", (_req, res) => res.json({ status: "ok", time: new Date().toISOString() }));
 app.use("/api/auth/login", rateLimit({ windowMs: 15 * 60 * 1000, max: 10, standardHeaders: true }));
 app.use("/api/auth/register-client", rateLimit({ windowMs: 60 * 60 * 1000, max: 5, standardHeaders: true }));
 app.use("/api/auth/forgot-password", rateLimit({ windowMs: 60 * 60 * 1000, max: 5, standardHeaders: true }));
 app.use("/api", rateLimit({ windowMs: 15 * 60 * 1000, max: 1000 }));
 
-app.get("/api/health", (_req, res) => res.json({ status: "ok", time: new Date().toISOString() }));
+
 
 app.use("/api/auth", authRoutes);
 app.use("/api/settings", settingsRoutes);
